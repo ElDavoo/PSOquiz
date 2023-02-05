@@ -5,7 +5,6 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-
 import 'package:pso_quiz/constants.dart';
 
 class Question {

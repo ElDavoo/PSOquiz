@@ -7,7 +7,7 @@
           "question": "question 1",
           "answers": [
             {
-              "answerText": "answerlText 1",
+              "answerText": "Nel caso di uno schema di memoria a pagine la conversione da indirizzo logico a fisico prevede che l'indirizzo logico sia già  suddiviso in un numero di pagina e in un offset, mentre nel caso di uno schema di memoria a segmenti la conversione da indirizzo logico a fisico prevede una suddivisione automatica a livello Hw nell'indirizzo logico fra numero di segmento logico e offset  ",
               "isCorrect": true
             },
             {

@@ -1,0 +1,93 @@
+{
+  "quizzes": [
+    {
+      "name": "name 1",
+      "questions": [
+        {
+          "question": "question 1",
+          "answers": [
+            {
+              "answerText": "answerText 1",
+              "isCorrect": true
+            },
+            {
+              "answerText": "answerText 2",
+              "isCorrect": false
+            },
+            {
+              "answerText": "answerText 3",
+              "isCorrect": false
+            },
+            {
+              "answerText": "answerText 4",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "question": "question 2",
+          "answers": [
+            {
+              "answerText": "answerText 1",
+              "isCorrect": false
+            },
+            {
+              "answerText": "answerText 2",
+              "isCorrect": true
+            },
+            {
+              "answerText": "answerText 3",
+              "isCorrect": false
+            },
+            {
+              "answerText": "answerText 4",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "question": "question 3",
+          "answers": [
+            {
+              "answerText": "answerText 1",
+              "isCorrect": false
+            },
+            {
+              "answerText": "answerText 2",
+              "isCorrect": false
+            },
+            {
+              "answerText": "answerText 3",
+              "isCorrect": true
+            },
+            {
+              "answerText": "answerText 4",
+              "isCorrect": false
+            }
+          ]
+        },
+        {
+          "question": "question 4",
+          "answers": [
+            {
+              "answerText": "answerText 1",
+              "isCorrect": false
+            },
+            {
+              "answerText": "answerText 2",
+              "isCorrect": false
+            },
+            {
+              "answerText": "answerText 3",
+              "isCorrect": false
+            },
+            {
+              "answerText": "answerText 4",
+              "isCorrect": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

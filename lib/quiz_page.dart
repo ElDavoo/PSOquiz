@@ -37,15 +37,19 @@ class _QuizPageState extends State<QuizPage> {
             )
           : QuestionWidget(
               question: _questions[_currentQuestionIndex],
-              onAnswer: (answerIndex) {
-                if (_questions[_currentQuestionIndex].answers[answerIndex].isCorrect) {
-                  _score++;
-                }
+            ),
+      floatingActionButton:
+        // If we're on the last question, go back
+        _currentQuestionIndex == _questions.length - 1
+            ? FloatingActionButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Icon(Icons.check),
+              )
+            : FloatingActionButton(onPressed: () {
                 setState(() {
                   _currentQuestionIndex++;
                 });
-              },
-            ),
+        }, child: const Icon(Icons.arrow_forward)),
     );
   }
 }

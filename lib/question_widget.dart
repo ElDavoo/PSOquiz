@@ -6,25 +6,28 @@ import 'package:pso_quiz/question.dart';
 
 class QuestionWidget extends StatelessWidget {
   final Question question;
+  final Function(bool) onAnswer;
 
   const QuestionWidget({super.key,
     required this.question,
+    required this.onAnswer
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        Text(question.questionText),
-        ...question.answers
-            .asMap()
-            .entries
-            .map((entry) => QuizButton(
-                  text: entry.value.answerText,
-                  isCorrect: entry.value.isCorrect,
-                ))
-            .toList(),
-      ],
+        children: [
+          Text(question.questionText),
+          ...question.answers
+              .asMap()
+              .entries
+              .map((entry) => QuizButton(
+                    text: entry.value.answerText,
+                    isCorrect: entry.value.isCorrect,
+                    onAnswer: onAnswer,
+                  ))
+              .toList(),
+        ],
     );
   }
 }
@@ -32,8 +35,9 @@ class QuestionWidget extends StatelessWidget {
 class QuizButton extends StatefulWidget {
   final String text;
   final bool isCorrect;
+  final Function(bool) onAnswer;
 
-  const QuizButton({super.key, required this.text, required this.isCorrect});
+  const QuizButton({super.key, required this.text, required this.isCorrect, required this.onAnswer});
 
   @override
   State<StatefulWidget> createState() => _QuizButtonState();
@@ -55,9 +59,13 @@ class _QuizButtonState extends State<QuizButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
+        if (_isPressed) {
+          return;
+        }
         setState(() {
           _isPressed = true;
         });
+        widget.onAnswer(widget.isCorrect);
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: _isPressed ? (widget.isCorrect ? Colors.green : Colors.red) : Colors.blue,

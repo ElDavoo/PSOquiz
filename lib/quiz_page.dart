@@ -30,12 +30,15 @@ class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(C.appName)),
+      appBar: AppBar(
+        // Get current question and get quiz title
+          title: Text(_questions[_currentQuestionIndex].quizName)
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Text("${C.points}:$_score", style: const TextStyle(fontSize: 20)),
+            Text("${C.points}: $_score", style: const TextStyle(fontSize: 20)),
             Text(
                 "${C.question} ${_currentQuestionIndex + 1}/${_questions.length}",
                 style: const TextStyle(fontSize: 20)),
@@ -64,7 +67,28 @@ class _QuizPageState extends State<QuizPage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+      children:[
+      FloatingActionButton(
+        heroTag: "back",
+        onPressed: () {
+          if (_currentQuestionIndex > 0) {
+            setState(() {
+              _currentQuestionIndex--;
+              _pageController.animateToPage(
+                _currentQuestionIndex,
+                duration: const Duration(milliseconds: 100),
+                curve: Curves.ease,
+              );
+            });
+          }
+        },
+        child: const Icon(Icons.arrow_back),
+      ),
+      const Padding(padding: EdgeInsets.all(8.0)),
+      FloatingActionButton(
+        heroTag: "next",
         onPressed: () {
           if (_currentQuestionIndex < _questions.length - 1) {
             setState(() {
@@ -83,6 +107,7 @@ class _QuizPageState extends State<QuizPage> {
             ? const Icon(Icons.arrow_forward)
             : const Icon(Icons.check),
       ),
-    );
+    ],
+    ),);
   }
 }

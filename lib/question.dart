@@ -8,11 +8,12 @@ import 'package:flutter/services.dart';
 import 'package:pso_quiz/constants.dart';
 
 class Question {
+  final String quizName;
   final String questionText;
   final List<Answer> answers;
 
   // named constructor
-  Question({required this.questionText, required this.answers});
+  Question({required this.quizName, required this.questionText, required this.answers});
 }
 
 // A Dart class that implements an answer.
@@ -94,7 +95,10 @@ Future<List<Quiz>> loadQuiz() async {
       }
 
       // Create a question
-      final question = Question(questionText: questionText, answers: answers);
+      final question = Question(
+          quizName: name,
+          questionText: questionText,
+          answers: answers);
 
       // Add the question to the list of questions
       questions.add(question);

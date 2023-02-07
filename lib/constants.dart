@@ -5,11 +5,11 @@ class C {
 
   static String get jsonKeyQuizzes => 'quizzes';
 
-  static String get jsonKeyName => 'name';
+  static String get jsonKeyName => 'quizName';
 
   static String get jsonKeyQuestions => 'questions';
 
-  static String get jsonKeyQuestionText => 'question';
+  static String get jsonKeyQuestionText => 'questionText';
 
   static String get jsonKeyAnswers => 'answers';
 

@@ -14,8 +14,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MyHomePage(),
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(),
     );
   }
 }
@@ -37,27 +41,29 @@ class _MyHomePageState extends State<MyHomePage> {
       body: FutureBuilder(
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return QuizChooseWidget(
-              quizzes: snapshot.data as List<Quiz>,
-              onQuizSelected: (quizzes) {
-                if (quizzes.isEmpty) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(C.chooseSomethingText),
+            return SingleChildScrollView(
+              child: QuizChooseWidget(
+                quizzes: snapshot.data as List<Quiz>,
+                onQuizSelected: (quizzes) {
+                  if (quizzes.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(C.chooseSomethingText),
+                      ),
+                    );
+                    return;
+                  }
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => QuizPage(
+                        quizzes: quizzes,
+                      ),
                     ),
                   );
-                  return;
-                }
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => QuizPage(
-                      quizzes: quizzes,
-                    ),
-                  ),
-                );
-              },
+                },
+              ),
             );
           } else {
             return const Center(

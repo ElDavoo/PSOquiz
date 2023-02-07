@@ -1,6 +1,7 @@
 // A Dart class that implements a question.
 // A question is made up of a question text and a list of answers.
 //
+import 'package:collection/collection.dart';
 
 import 'dart:convert';
 
@@ -110,6 +111,8 @@ Future<List<Quiz>> loadQuiz() async {
     // Add the quiz to the list of quizzes
     quizzes.add(quiz);
   }
+  // Sort the list of quizzes by natural sort and not lexicographical sort
+  quizzes.sort((a, b) => compareNatural(a.name, b.name));
 
   // Return the list of quizzes
   return quizzes;

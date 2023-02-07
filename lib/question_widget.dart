@@ -23,7 +23,10 @@ class QuestionWidget extends StatelessWidget {
                   isCorrect: entry.value.isCorrect,
                   onAnswer: onAnswer,
                 ))
-            .toList(),
+            .toList()
+        // shuffle the buttons
+        ..shuffle(),
+
       ],
     );
   }
@@ -77,8 +80,9 @@ class _QuizButtonState extends State<QuizButton>
               ? (widget.isCorrect ? Colors.green : Colors.red)
               : Colors.blue,
         ),
-        child: Text(widget.text),
-      ),
+        child: Text(widget.text,
+            style: const TextStyle(fontSize: 18, color: Colors.white)
+      ),),
     );
   }
 

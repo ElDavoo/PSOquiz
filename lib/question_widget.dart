@@ -12,20 +12,22 @@ class QuestionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(question.questionText, style: const TextStyle(fontSize: 20)),
-        ...question.answers
-            .asMap()
-            .entries
-            .map((entry) => QuizButton(
-                  text: entry.value.answerText,
-                  isCorrect: entry.value.isCorrect,
-                  onAnswer: onAnswer,
-                ))
-            .toList(),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Text(question.questionText, style: const TextStyle(fontSize: 20)),
+          ...question.answers
+              .asMap()
+              .entries
+              .map((entry) => QuizButton(
+                    text: entry.value.answerText,
+                    isCorrect: entry.value.isCorrect,
+                    onAnswer: onAnswer,
+                  ))
+              .toList(),
 
-      ],
+        ],
+      ),
     );
   }
 }
@@ -78,9 +80,15 @@ class _QuizButtonState extends State<QuizButton>
               ? (widget.isCorrect ? Colors.green : Colors.red)
               : Colors.blue,
         ),
-        child: Text(widget.text,
-            style: const TextStyle(fontSize: 18, color: Colors.white)
-      ),),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Text(widget.text,
+                style: const TextStyle(fontSize: 18, color: Colors.white)
+
+      ),
+          ),
+        ),),
     );
   }
 

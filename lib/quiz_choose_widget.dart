@@ -46,6 +46,29 @@ class _QuizChooseWidgetState extends State<QuizChooseWidget> {
                     },
                   ))
               .toList(),
+          // Add two buttons to select and deselect all quizzes.
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _selectedQuizzes.clear();
+                    _selectedQuizzes.addAll(widget.quizzes);
+                  });
+                },
+                child: const Text('Seleziona tutto'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _selectedQuizzes.clear();
+                  });
+                },
+                child: const Text('Deseleziona tutto'),
+              ),
+            ],
+          ),
           ElevatedButton(
             onPressed: () => widget.onQuizSelected(_selectedQuizzes),
             child: Text(C.startQuizButtonText),

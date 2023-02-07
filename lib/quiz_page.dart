@@ -18,6 +18,11 @@ class _QuizPageState extends State<QuizPage> {
   int _currentQuestionIndex = 0;
   int _score = 0;
   final PageController _pageController = PageController();
+  // add a timer
+  final Stopwatch _stopwatch = Stopwatch();
+  // add a stream of Duration that takes the value from _stopwatch every second
+  late final Stream<Duration> _timerStream;
+
 
   @override
   void initState() {
@@ -28,6 +33,10 @@ class _QuizPageState extends State<QuizPage> {
     for (var question in _questions) {
       question.answers.shuffle();
     }
+    // start the timer
+    _stopwatch.start();
+    _timerStream = Stream.periodic(const Duration(seconds: 1), (x) => x)
+        .map((event) => _stopwatch.elapsed);
   }
 
   // Put every question in a pageview and use controller to navigate between them
@@ -47,6 +56,21 @@ class _QuizPageState extends State<QuizPage> {
                 "${C.question} ${_currentQuestionIndex + 1}/${_questions.length}",
                 style: const TextStyle(fontSize: 20)),
             const Padding(padding: EdgeInsets.all(8.0)),
+            // Add a stream builder to show the timer
+            StreamBuilder<Duration>(
+              stream: _timerStream,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  final duration = snapshot.data!;
+                  // Pad in a nice way
+                  final minutes = duration.inMinutes.toString().padLeft(2, '0');
+                  final seconds = (duration.inSeconds % 60).toString().padLeft(2, '0');
+                  return Text("Tempo: $minutes:$seconds", style: const TextStyle(fontSize: 20));
+                } else {
+                  return const Text("Tempo: 00:00", style: TextStyle(fontSize: 20));
+                }
+              },
+            ),
             Expanded(
               child: PageView.builder(
                 controller: _pageController,

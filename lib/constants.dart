@@ -27,4 +27,6 @@ class C {
       'Seleziona gli argomenti su cui esercitarti';
 
   static String get chooseSomethingText => 'Seleziona almeno un argomento';
+
+  static String get time => 'Tempo';
 }

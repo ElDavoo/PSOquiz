@@ -25,6 +25,8 @@ class QuestionWidget extends StatelessWidget {
                     onAnswer: onAnswer,
                   ))
               .toList(),
+          // Pad
+          const SizedBox(height: 70),
 
         ],
       ),
@@ -81,7 +83,7 @@ class _QuizButtonState extends State<QuizButton>
               : Colors.blue,
         ),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(2.0),
           child: Center(
             child: Text(widget.text,
                 style: const TextStyle(fontSize: 18, color: Colors.white)

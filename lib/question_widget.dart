@@ -23,9 +23,7 @@ class QuestionWidget extends StatelessWidget {
                   isCorrect: entry.value.isCorrect,
                   onAnswer: onAnswer,
                 ))
-            .toList()
-        // shuffle the buttons
-        ..shuffle(),
+            .toList(),
 
       ],
     );

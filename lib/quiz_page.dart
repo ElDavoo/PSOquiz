@@ -24,6 +24,10 @@ class _QuizPageState extends State<QuizPage> {
     super.initState();
     _questions.addAll(widget.quizzes.expand((quiz) => quiz.questions));
     _questions.shuffle();
+    // shuffle all the answers
+    for (var question in _questions) {
+      question.answers.shuffle();
+    }
   }
 
   // Put every question in a pageview and use controller to navigate between them

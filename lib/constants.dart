@@ -21,7 +21,7 @@ class C {
 
   static String get question => 'Domanda';
 
-  static String get startQuizButtonText => 'Vamos';
+  static String get startQuizButtonText => 'Inizia quiz';
 
   static String get chooseQuizText =>
       'Seleziona gli argomenti su cui esercitarti';
